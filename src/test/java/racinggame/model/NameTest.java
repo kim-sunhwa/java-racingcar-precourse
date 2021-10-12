@@ -13,6 +13,7 @@ import racinggame.commons.exceptions.InvalidPatternException;
 import racinggame.commons.response.ErrorCode;
 import racinggame.commons.validations.Validator;
 
+@DisplayName("자동차 이름 입력 검증")
 public class NameTest {
 	@DisplayName("이름 입력 테스트")
 	@ParameterizedTest

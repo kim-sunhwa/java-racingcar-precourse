@@ -1,12 +1,14 @@
 package racinggame;
 
-import nextstep.utils.Console;
+import racinggame.commons.validations.Validator;
+import racinggame.controller.CarsInfo;
 
 public class Application {
 	public static void main(String[] args) {
 		// TODO 자동차 경주 게임 구현
-		System.out.println("시작");
-		String s = Console.readLine();
-		System.out.println(s);
+		Validator validator = new Validator();
+		CarsInfo carsInfo = new CarsInfo(validator);
+		String inputCarNames = carsInfo.isValidNames();
+		System.out.println(inputCarNames);
 	}
 }

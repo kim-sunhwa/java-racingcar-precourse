@@ -6,6 +6,10 @@ public class Message implements RacingCode {
 		System.out.println(REQUEST_CAR_NAME_LIST);
 	}
 
+	public static void requestCycle() {
+		System.out.println(REQUEST_CYCLE);
+	}
+
 	public static void send(ErrorCode errorCode) {
 		System.out.println(errorCode.getMessage());
 	}

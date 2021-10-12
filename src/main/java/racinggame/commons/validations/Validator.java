@@ -1,13 +1,14 @@
 package racinggame.commons.validations;
 
 import static racinggame.commons.response.ErrorCode.*;
+import static racinggame.commons.response.RacingCode.*;
 
 import java.lang.reflect.Field;
 
 import racinggame.commons.response.Message;
 
 public class Validator<T> {
-	public static enum ValidType {NULL, BLANK_SPACE, LENGTH, SPECIAL_CHARACTER, TYPE_NUMBER, RANGE}
+	public enum ValidType {NULL, BLANK_SPACE, LENGTH, SPECIAL_CHARACTER, TYPE_NUMBER, RANGE}
 
 	public void of(T data) {
 		Field[] fields = data.getClass().getDeclaredFields();
@@ -48,6 +49,10 @@ public class Validator<T> {
 			NotBlank notBlank = field.getAnnotation(NotBlank.class);
 			NotBlankValidator.of(notBlank, verifyData);
 		}
+	}
+
+	public static boolean isNumber(String verify) {
+		return verify.matches(NUMBER_REGEX);
 	}
 
 	private Object getObject(T data, Field field) {

@@ -23,7 +23,7 @@ public class CycleTest {
 
 	@DisplayName("경주 횟수 입력 숫자의 범위 예외 발생 테스트")
 	@ParameterizedTest
-	@ValueSource(ints = {-1, 2, 10})
+	@ValueSource(ints = {-1, 2, 22})
 	void out_of_range_number_in_cycle_exception_test(int number) {
 		Validator validator = new Validator();
 		assertThatExceptionOfType(OutOfRangeException.class)

@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 import racinggame.commons.response.Message;
 
 public class Validator<T> {
-	public static enum ValidType {NULL, BLANK_SPACE, LENGTH}
+	public static enum ValidType {NULL, BLANK_SPACE, LENGTH, SPECIAL_CHARACTER}
 
 	public void of(T data) {
 		Field[] fields = data.getClass().getDeclaredFields();
@@ -17,6 +17,14 @@ public class Validator<T> {
 
 			isBlank(field, verify);
 			checkSize(field, verify);
+			checkPattern(field, verify);
+		}
+	}
+
+	private void checkPattern(Field field, Object verify) {
+		if (field.isAnnotationPresent(Pattern.class)) {
+			Pattern clazz = field.getAnnotation(Pattern.class);
+			PatternValidator.of(verify, clazz);
 		}
 	}
 

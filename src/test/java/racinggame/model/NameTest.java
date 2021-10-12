@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import racinggame.commons.exceptions.InvalidBlankException;
 import racinggame.commons.exceptions.InvalidLengthException;
+import racinggame.commons.exceptions.InvalidPatternException;
 import racinggame.commons.response.ErrorCode;
 import racinggame.commons.validations.Validator;
 
@@ -37,6 +38,16 @@ public class NameTest {
 		Validator validator = new Validator();
 		assertThatExceptionOfType(InvalidLengthException.class)
 			.isThrownBy(() -> validator.of(new Name("sunhwa")))
+			.withMessageContaining("[ERROR]");
+	}
+
+	@DisplayName("이름 특수문자 에러 발생 테스트")
+	@ParameterizedTest
+	@ValueSource(strings = {"\"  \"", "@pobi", "best!"})
+	void input_name_invalid_character_exception_test(String invalidName) {
+		Validator validator = new Validator();
+		assertThatExceptionOfType(InvalidPatternException.class)
+			.isThrownBy(() -> validator.of(new Name(invalidName)))
 			.withMessageContaining("[ERROR]");
 	}
 }

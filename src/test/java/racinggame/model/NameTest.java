@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import racinggame.commons.exceptions.InvalidBlankException;
+import racinggame.commons.exceptions.InvalidLengthException;
 import racinggame.commons.response.ErrorCode;
 import racinggame.commons.validations.Validator;
 
@@ -28,5 +29,14 @@ public class NameTest {
 		assertThatExceptionOfType(InvalidBlankException.class)
 			.isThrownBy(() -> validator.of(new Name(null)))
 			.withMessageContaining(ErrorCode.INVALID_BLANK.getMessage());
+	}
+
+	@Test
+	@DisplayName("이름 5자 이상 에러 발생 테스트")
+	void input_name_long_length_exception_test() {
+		Validator validator = new Validator();
+		assertThatExceptionOfType(InvalidLengthException.class)
+			.isThrownBy(() -> validator.of(new Name("sunhwa")))
+			.withMessageContaining("[ERROR]");
 	}
 }

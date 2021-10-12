@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 import racinggame.commons.response.Message;
 
 public class Validator<T> {
-	public static enum ValidType {NULL, BLANK_SPACE}
+	public static enum ValidType {NULL, BLANK_SPACE, LENGTH}
 
 	public void of(T data) {
 		Field[] fields = data.getClass().getDeclaredFields();
@@ -16,6 +16,14 @@ public class Validator<T> {
 			Object verify = getObject(data, field);
 
 			isBlank(field, verify);
+			checkSize(field, verify);
+		}
+	}
+
+	private void checkSize(Field field, Object verify) {
+		if (field.isAnnotationPresent(Size.class)) {
+			Size clazz = field.getAnnotation(Size.class);
+			SizeValidator.of(verify, clazz);
 		}
 	}
 

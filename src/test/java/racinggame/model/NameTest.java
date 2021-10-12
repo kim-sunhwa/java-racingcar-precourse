@@ -3,8 +3,13 @@ package racinggame.model;
 import static org.assertj.core.api.Assertions.*;
 
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import racinggame.commons.exceptions.InvalidBlankException;
+import racinggame.commons.response.ErrorCode;
+import racinggame.commons.validations.Validator;
 
 public class NameTest {
 	@DisplayName("이름 입력 테스트")
@@ -14,5 +19,14 @@ public class NameTest {
 		String name = "pobi";
 		Name expected = new Name(name);
 		assertThat(expected.getName()).isEqualTo(name);
+	}
+
+	@Test
+	@DisplayName("이름 null 에러 발생 테스트")
+	void input_name_null_exception_test() {
+		Validator validator = new Validator();
+		assertThatExceptionOfType(InvalidBlankException.class)
+			.isThrownBy(() -> validator.of(new Name(null)))
+			.withMessageContaining(ErrorCode.INVALID_BLANK.getMessage());
 	}
 }

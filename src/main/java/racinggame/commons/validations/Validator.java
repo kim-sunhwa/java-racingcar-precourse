@@ -7,7 +7,7 @@ import java.lang.reflect.Field;
 import racinggame.commons.response.Message;
 
 public class Validator<T> {
-	public static enum ValidType {NULL, BLANK_SPACE, LENGTH, SPECIAL_CHARACTER}
+	public static enum ValidType {NULL, BLANK_SPACE, LENGTH, SPECIAL_CHARACTER, TYPE_NUMBER, RANGE}
 
 	public void of(T data) {
 		Field[] fields = data.getClass().getDeclaredFields();
@@ -18,6 +18,14 @@ public class Validator<T> {
 			isBlank(field, verify);
 			checkSize(field, verify);
 			checkPattern(field, verify);
+			isDigit(field, verify);
+		}
+	}
+
+	private void isDigit(Field field, Object verify) {
+		if (field.isAnnotationPresent(Digit.class)) {
+			Digit clazz = field.getAnnotation(Digit.class);
+			DigitValidator.of((int)verify, clazz);
 		}
 	}
 

@@ -15,14 +15,14 @@ public class CarTest {
 	}
 
 	@Test
-	@DisplayName("자동차 생성 확인")
+	@DisplayName("자동차 생성")
 	void createCarTest() {
 		Car car = getCar(carName);
 		assertThat(car.getName()).isEqualTo(carName);
 	}
 
 	@Test
-	@DisplayName("자동차 전진 또는 멈춤 포맷팅 테스트")
+	@DisplayName("자동차 전진 또는 멈춤 포맷팅")
 	void car_forward_or_stop_format_test() {
 		String name = "name";
 		Car car = new Car(new Name(name));

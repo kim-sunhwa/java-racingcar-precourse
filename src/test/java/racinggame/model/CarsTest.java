@@ -16,7 +16,7 @@ class CarsTest {
 	private static String[] listOfName = {POBI, CRONG, GONG};
 
 	@Test
-	@DisplayName("자동차 목록 객체 생성 테스트")
+	@DisplayName("자동차 목록 객체 생성")
 	void create_cars_test() {
 		Cars cars = getCars();
 		assertThat(cars.records().get(0).getName()).isEqualTo(POBI);

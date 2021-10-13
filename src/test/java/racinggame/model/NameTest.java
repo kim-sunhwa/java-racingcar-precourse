@@ -13,9 +13,8 @@ import racinggame.commons.exceptions.InvalidPatternException;
 import racinggame.commons.response.ErrorCode;
 import racinggame.commons.validations.Validator;
 
-@DisplayName("자동차 이름 입력 검증")
 public class NameTest {
-	@DisplayName("이름 입력 테스트")
+	@DisplayName("이름 객체 생성")
 	@ParameterizedTest
 	@ValueSource(strings = {"pobi", "crong", "honux"})
 	void input_name_test() {
@@ -25,7 +24,7 @@ public class NameTest {
 	}
 
 	@Test
-	@DisplayName("이름 null 에러 발생 테스트")
+	@DisplayName("이름 null 예외 처리")
 	void input_name_null_exception_test() {
 		Validator validator = new Validator();
 		assertThatExceptionOfType(InvalidBlankException.class)
@@ -34,7 +33,7 @@ public class NameTest {
 	}
 
 	@Test
-	@DisplayName("이름 5자 이상 에러 발생 테스트")
+	@DisplayName("이름 5자 이상 예외 처리")
 	void input_name_long_length_exception_test() {
 		Validator validator = new Validator();
 		assertThatExceptionOfType(InvalidLengthException.class)
@@ -42,7 +41,7 @@ public class NameTest {
 			.withMessageContaining("[ERROR]");
 	}
 
-	@DisplayName("이름 특수문자 에러 발생 테스트")
+	@DisplayName("이름 특수문자 예외 처리")
 	@ParameterizedTest
 	@ValueSource(strings = {"\"  \"", "@pobi", "best!"})
 	void input_name_invalid_character_exception_test(String invalidName) {

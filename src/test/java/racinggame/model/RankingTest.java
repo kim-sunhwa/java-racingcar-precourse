@@ -12,7 +12,7 @@ public class RankingTest {
 	private Cars cars = getCarsAfterRacing();
 
 	@Test
-	@DisplayName("자동차 경주 우숭자 명단 확인")
+	@DisplayName("자동차 경주 우숭자 명단")
 	void result_of_car_racing_ranking_test() {
 		Ranking ranking = Ranking.of(getCarsAfterRacing(), new Winners());
 		String expected = ranking.top();

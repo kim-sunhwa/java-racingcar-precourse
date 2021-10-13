@@ -35,4 +35,11 @@ public class Racing {
 	int getDistance() {
 		return distance;
 	}
+
+	@Override
+	public String toString() {
+		return "Racing{" +
+			"distance=" + distance +
+			'}';
+	}
 }

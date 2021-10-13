@@ -20,4 +20,11 @@ public class Cycle {
 			"cycle=" + cycle +
 			'}';
 	}
+
+	public void turnAround() {
+		if (this.cycle < 1) {
+			return;
+		}
+		this.cycle--;
+	}
 }

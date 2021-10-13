@@ -4,7 +4,6 @@ import racinggame.commons.response.Message;
 import racinggame.commons.validations.Validator;
 import racinggame.controller.CarsInfo;
 import racinggame.controller.RacingInfo;
-import racinggame.model.Car;
 import racinggame.model.Cars;
 import racinggame.model.CarsFactory;
 import racinggame.model.Cycle;
@@ -22,12 +21,12 @@ public class Application {
 		System.out.println(cycle);
 
 		Cars cars = CarsFactory.from(inputCarNames);
-		System.out.println(cars);
 
 		Message.running();
-		cars.isRacing();
-		for (Car racingCar : cars.records()) {
-			System.out.println(racingCar.record());
+		while (cycle.isRunning()) {
+			System.out.println(cars.areRacing());
+			cycle.turnAround();
 		}
+		System.out.println(cars);
 	}
 }

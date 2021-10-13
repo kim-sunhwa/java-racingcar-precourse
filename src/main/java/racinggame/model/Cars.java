@@ -17,16 +17,20 @@ public class Cars {
 		return this.cars;
 	}
 
+	public String areRacing() {
+		StringBuilder sb = new StringBuilder();
+		for (Car car : cars) {
+			car.running();
+			sb.append(car.record());
+			sb.append(System.lineSeparator());
+		}
+		return sb.toString();
+	}
+
 	@Override
 	public String toString() {
 		return "Cars{" +
 			"cars=" + cars +
-			'}';
-	}
-
-	public void isRacing() {
-		for (Car car : cars) {
-			car.running();
-		}
+			'}' + System.lineSeparator();
 	}
 }

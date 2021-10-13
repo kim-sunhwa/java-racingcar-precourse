@@ -3,7 +3,10 @@ package racinggame;
 import racinggame.commons.validations.Validator;
 import racinggame.controller.CarsInfo;
 import racinggame.controller.RacingInfo;
+import racinggame.model.Car;
+import racinggame.model.Cars;
 import racinggame.model.Cycle;
+import racinggame.model.Name;
 
 public class Application {
 	public static void main(String[] args) {
@@ -16,5 +19,13 @@ public class Application {
 		Cycle ready = racingInfo.ready();
 		System.out.println(inputCarNames);
 		System.out.println(ready);
+
+		String[] carNames = inputCarNames.split(",");
+		Cars cars = new Cars();
+		for (String name : carNames) {
+			Car car = new Car(new Name(name));
+			cars.add(car);
+		}
+		System.out.println(cars);
 	}
 }

@@ -14,6 +14,13 @@ public class Cycle {
 		return this.cycle > 0;
 	}
 
+	public void turnAround() {
+		if (this.cycle < 1) {
+			return;
+		}
+		this.cycle--;
+	}
+	
 	@Override
 	public String toString() {
 		return "Cycle{" +
@@ -21,10 +28,4 @@ public class Cycle {
 			'}';
 	}
 
-	public void turnAround() {
-		if (this.cycle < 1) {
-			return;
-		}
-		this.cycle--;
-	}
 }

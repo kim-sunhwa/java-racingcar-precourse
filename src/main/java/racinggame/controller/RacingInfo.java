@@ -19,7 +19,7 @@ public class RacingInfo {
 		boolean isValid = false;
 		int number = -1;
 		while (!isValid) {
-			number = isValidNumber();
+			number = isValidTypeNumber();
 			isValid = isValidRangeOfNumber(new Cycle(number));
 		}
 		return new Cycle(number);
@@ -35,7 +35,7 @@ public class RacingInfo {
 		}
 	}
 
-	private int isValidNumber() {
+	private int isValidTypeNumber() {
 		boolean isValid = false;
 		String cycleStr = "";
 		while (!isValid) {

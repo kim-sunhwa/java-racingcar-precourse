@@ -14,14 +14,14 @@ public class Ranking {
 
 	public static Ranking of(Cars cars, Winners winners) {
 		Ranking record = new Ranking(winners);
-		for (Car car : cars.records()) {
-			record.determine(car);
-		}
+		record.determine(cars);
 		return record;
 	}
 
-	private void determine(Car car) {
-		this.ranking.add(car);
+	private void determine(Cars cars) {
+		for (Car car : cars.records()) {
+			this.ranking.add(car);
+		}
 	}
 
 	public String top() {
@@ -30,7 +30,7 @@ public class Ranking {
 
 	private Winners listOfWinners() {
 		boolean isTrue = true;
-		int win = ranking.peek().distance();
+		int win = theBestRecord();
 		while (!ranking.isEmpty() && isTrue) {
 			isTrue = isWinner(win);
 			this.winners.record(isTrue, this.ranking.poll().getName());
@@ -39,10 +39,14 @@ public class Ranking {
 	}
 
 	private boolean isWinner(int win) {
-		if (win > this.ranking.peek().distance()) {
+		if (win > theBestRecord()) {
 			return false;
 		}
 		return true;
+	}
+
+	private int theBestRecord() {
+		return this.ranking.peek().distance();
 	}
 
 	@Override

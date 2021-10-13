@@ -17,4 +17,8 @@ public class Message implements RacingCode {
 	public static void send(String text) {
 		System.out.println(text);
 	}
+
+	public static void running() {
+		System.out.println(RACING_RUNNING_RESULT + System.lineSeparator());
+	}
 }

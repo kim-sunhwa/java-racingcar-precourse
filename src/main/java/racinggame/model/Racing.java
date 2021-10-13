@@ -8,11 +8,11 @@ public class Racing {
 	public static final boolean BOOLEAN = true;
 	private int distance;
 
-	public Racing() {
+	Racing() {
 		this.distance = CAR_MOVE_RANGE_MIN;
 	}
 
-	public void isForward() {
+	void isForward() {
 		if (isMoved() > STOP_NUMBER) {
 			this.distance += MOVE_FORWARD;
 		}
@@ -32,7 +32,7 @@ public class Racing {
 		return Randoms.pickNumberInRange(CAR_MOVE_RANGE_MIN, CAR_MOVE_RANGE_MAX);
 	}
 
-	public int getDistance() {
+	int getDistance() {
 		return distance;
 	}
 }

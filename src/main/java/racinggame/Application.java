@@ -1,5 +1,8 @@
 package racinggame;
 
+import static racinggame.commons.response.RacingCode.*;
+
+import racinggame.commons.response.Message;
 import racinggame.commons.validations.Validator;
 import racinggame.controller.CarsInfo;
 import racinggame.controller.RacingInfo;
@@ -16,16 +19,22 @@ public class Application {
 		String inputCarNames = carsInfo.isValidNames();
 
 		RacingInfo racingInfo = new RacingInfo(validator);
-		Cycle ready = racingInfo.ready();
+		Cycle cycle = racingInfo.ready();
 		System.out.println(inputCarNames);
-		System.out.println(ready);
+		System.out.println(cycle);
 
-		String[] carNames = inputCarNames.split(",");
+		String[] carNames = inputCarNames.split(INPUT_NAMES_SPLIT_REGEX);
 		Cars cars = new Cars();
 		for (String name : carNames) {
 			Car car = new Car(new Name(name));
 			cars.add(car);
 		}
 		System.out.println(cars);
+
+		Message.running();
+		cars.isRacing();
+		for (Car racingCar : cars.records()) {
+			System.out.println(racingCar.record());
+		}
 	}
 }

@@ -20,4 +20,10 @@ public class Cars {
 			"cars=" + cars +
 			'}';
 	}
+
+	public void isRacing() {
+		for (Car car : cars) {
+			car.running();
+		}
+	}
 }

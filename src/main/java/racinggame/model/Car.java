@@ -10,4 +10,11 @@ public class Car {
 	public String getName() {
 		return this.name.getName();
 	}
+
+	@Override
+	public String toString() {
+		return "Car{" +
+			"name=" + name +
+			'}';
+	}
 }

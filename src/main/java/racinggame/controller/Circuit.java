@@ -15,9 +15,16 @@ public class Circuit {
 
 	public void play() {
 		Message.running();
+		Message.send(broadcasting());
+	}
+
+	private String broadcasting() {
+		StringBuilder sb = new StringBuilder();
 		while (cycle.isRunning()) {
-			System.out.println(cars.areRacing());
+			sb.append(cars.areRacing());
+			sb.append(System.lineSeparator());
 			cycle.turnAround();
 		}
+		return sb.toString();
 	}
 }

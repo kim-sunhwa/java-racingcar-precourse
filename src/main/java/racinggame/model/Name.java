@@ -1,5 +1,8 @@
 package racinggame.model;
 
+import java.util.Objects;
+
+import racinggame.commons.exceptions.InvalidBlankException;
 import racinggame.commons.validations.NotBlank;
 import racinggame.commons.validations.Pattern;
 import racinggame.commons.validations.Size;
@@ -11,7 +14,10 @@ public class Name {
 	private String name;
 
 	public Name(String name) {
-		this.name = name;
+		if (Objects.isNull(name)) {
+			throw new InvalidBlankException();
+		}
+		this.name = name.trim();
 	}
 
 	public String getName() {

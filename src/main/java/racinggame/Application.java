@@ -1,15 +1,13 @@
 package racinggame;
 
-import static racinggame.commons.response.RacingCode.*;
-
 import racinggame.commons.response.Message;
 import racinggame.commons.validations.Validator;
 import racinggame.controller.CarsInfo;
 import racinggame.controller.RacingInfo;
 import racinggame.model.Car;
 import racinggame.model.Cars;
+import racinggame.model.CarsFactory;
 import racinggame.model.Cycle;
-import racinggame.model.Name;
 
 public class Application {
 	public static void main(String[] args) {
@@ -23,12 +21,7 @@ public class Application {
 		System.out.println(inputCarNames);
 		System.out.println(cycle);
 
-		String[] carNames = inputCarNames.split(INPUT_NAMES_SPLIT_REGEX);
-		Cars cars = new Cars();
-		for (String name : carNames) {
-			Car car = new Car(new Name(name));
-			cars.add(car);
-		}
+		Cars cars = CarsFactory.from(inputCarNames);
 		System.out.println(cars);
 
 		Message.running();

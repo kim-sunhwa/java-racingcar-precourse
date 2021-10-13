@@ -6,7 +6,7 @@ public class Car {
 	private Name name;
 	private Racing racing = new Racing();
 
-	public Car(Name name) {
+	Car(Name name) {
 		this.name = name;
 		this.racing = new Racing();
 	}

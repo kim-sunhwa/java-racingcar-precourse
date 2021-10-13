@@ -6,6 +6,9 @@ import java.util.List;
 public class Cars {
 	private List<Car> cars = new ArrayList<>();
 
+	Cars() {
+	}
+
 	public void add(Car car) {
 		this.cars.add(car);
 	}

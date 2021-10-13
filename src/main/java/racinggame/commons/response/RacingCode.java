@@ -4,6 +4,8 @@ public interface RacingCode {
 	String REQUEST_CAR_NAME_LIST = "경주할 자동차 이름을 입력하세요.(이름은 쉼표(,)기준으로 구분)";
 	String REQUEST_CYCLE = "시도할 회수는 몇회인가요?";
 	String RACING_RUNNING_RESULT = "실행결과";
+	String WINNER_PREFIX = "최종 우승자는 ";
+	String WINNER_SUFFIX = " 입니다.";
 
 	// 레이싱 규칙
 	String NAME_DISTINGUISHER = ",";

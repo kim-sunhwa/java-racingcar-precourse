@@ -31,6 +31,6 @@ public class Application {
 		System.out.println(cars);
 
 		Ranking ranking = Ranking.from(cars);
-		System.out.println(ranking.top());
+		Message.winner(ranking.top());
 	}
 }

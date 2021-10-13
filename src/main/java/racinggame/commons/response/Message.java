@@ -1,7 +1,6 @@
 package racinggame.commons.response;
 
 public class Message implements RacingCode {
-
 	public static void requestCarNames() {
 		System.out.println(REQUEST_CAR_NAME_LIST);
 	}
@@ -10,15 +9,19 @@ public class Message implements RacingCode {
 		System.out.println(REQUEST_CYCLE);
 	}
 
+	public static void running() {
+		System.out.println(RACING_RUNNING_RESULT + System.lineSeparator());
+	}
+
+	public static void winner(String winnerNames) {
+		System.out.println(WINNER_PREFIX + winnerNames + WINNER_SUFFIX);
+	}
+
 	public static void send(ErrorCode errorCode) {
 		System.out.println(errorCode.getMessage());
 	}
 
 	public static void send(String text) {
 		System.out.println(text);
-	}
-
-	public static void running() {
-		System.out.println(RACING_RUNNING_RESULT + System.lineSeparator());
 	}
 }

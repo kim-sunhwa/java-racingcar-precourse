@@ -5,6 +5,7 @@ import racinggame.commons.validations.Validator;
 import racinggame.controller.CarsInfo;
 import racinggame.controller.Circuit;
 import racinggame.controller.RacingInfo;
+import racinggame.controller.Winners;
 import racinggame.model.Cars;
 import racinggame.model.CarsFactory;
 import racinggame.model.Cycle;
@@ -25,7 +26,7 @@ public class Application {
 		Circuit circuit = new Circuit(cars, cycle);
 		circuit.play();
 		// 게임 결과 - 출력
-		Ranking ranking = Ranking.from(cars);
+		Ranking ranking = Ranking.of(cars, new Winners());
 		Message.winner(ranking.top());
 	}
 }

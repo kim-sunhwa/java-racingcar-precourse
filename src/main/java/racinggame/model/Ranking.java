@@ -1,16 +1,19 @@
 package racinggame.model;
 
-import static racinggame.commons.response.RacingCode.*;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.PriorityQueue;
+
+import racinggame.controller.Winners;
 
 public class Ranking {
 	private PriorityQueue<Car> ranking = new PriorityQueue<>((o1, o2) -> o2.distance() - o1.distance());
+	private final Winners winners;
 
-	public static Ranking from(Cars cars) {
-		Ranking record = new Ranking();
+	private Ranking(Winners winners) {
+		this.winners = winners;
+	}
+
+	public static Ranking of(Cars cars, Winners winners) {
+		Ranking record = new Ranking(winners);
 		for (Car car : cars.records()) {
 			record.determine(car);
 		}
@@ -22,14 +25,17 @@ public class Ranking {
 	}
 
 	public String top() {
+		return listOfWinners().names();
+	}
+
+	private Winners listOfWinners() {
 		boolean isTrue = true;
 		int win = ranking.peek().distance();
-		List<String> winners = new ArrayList<>();
 		while (!ranking.isEmpty() && isTrue) {
-			winners.add(this.ranking.poll().getName());
 			isTrue = isWinner(win);
+			this.winners.record(isTrue, this.ranking.poll().getName());
 		}
-		return String.join(NAME_DISTINGUISHER, winners);
+		return this.winners;
 	}
 
 	private boolean isWinner(int win) {
@@ -37,5 +43,12 @@ public class Ranking {
 			return false;
 		}
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "Ranking{" +
+			"winners=" + winners +
+			'}';
 	}
 }

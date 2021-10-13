@@ -3,7 +3,7 @@ package racinggame.model;
 import racinggame.commons.validations.Digit;
 
 public class Cycle {
-	@Digit(min = 3, max = 20, prefix = "[ERROR]")
+	@Digit(min = 1, max = 20, prefix = "[ERROR]")
 	private int cycle;
 
 	public Cycle(int cycle) {

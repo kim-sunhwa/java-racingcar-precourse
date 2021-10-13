@@ -31,7 +31,7 @@ public class CarsInfo {
 	}
 
 	private String[] splitNames(String text) {
-		return text.split(INPUT_NAMES_SPLIT_REGEX);
+		return text.split(NAME_DISTINGUISHER);
 	}
 
 	private String countOfInputNamesAndIsDuplicated() {

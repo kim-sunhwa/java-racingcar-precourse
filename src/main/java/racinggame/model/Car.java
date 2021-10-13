@@ -29,8 +29,8 @@ public class Car {
 		return this.name.getName();
 	}
 
-	void setRacing(Racing racing) {
-		this.racing = racing;
+	int distance() {
+		return this.racing.getDistance();
 	}
 
 	@Override

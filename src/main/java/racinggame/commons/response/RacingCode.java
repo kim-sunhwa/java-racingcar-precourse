@@ -6,8 +6,7 @@ public interface RacingCode {
 	String RACING_RUNNING_RESULT = "실행결과";
 
 	// 레이싱 규칙
-	String
-		INPUT_NAMES_SPLIT_REGEX = ",";
+	String NAME_DISTINGUISHER = ",";
 	String NUMBER_REGEX = "[+-]?\\d*(\\.\\d+)?";
 	String COLON_FORMAT = " : ";
 	String CAR_FORWARD_FORMAT = "-";

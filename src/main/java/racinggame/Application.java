@@ -7,6 +7,7 @@ import racinggame.controller.RacingInfo;
 import racinggame.model.Cars;
 import racinggame.model.CarsFactory;
 import racinggame.model.Cycle;
+import racinggame.model.Ranking;
 
 public class Application {
 	public static void main(String[] args) {
@@ -28,5 +29,8 @@ public class Application {
 			cycle.turnAround();
 		}
 		System.out.println(cars);
+
+		Ranking ranking = Ranking.from(cars);
+		System.out.println(ranking.top());
 	}
 }

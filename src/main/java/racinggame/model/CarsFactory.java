@@ -7,7 +7,7 @@ public class CarsFactory {
 	}
 
 	public static Cars from(String names) {
-		String[] splitNames = names.split(INPUT_NAMES_SPLIT_REGEX);
+		String[] splitNames = names.split(NAME_DISTINGUISHER);
 		Cars cars = new Cars();
 		for (String name : splitNames) {
 			Car car = new Car(new Name(name));

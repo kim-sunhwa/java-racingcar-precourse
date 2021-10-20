@@ -9,6 +9,7 @@ import java.util.Set;
 
 import nextstep.utils.Console;
 import racinggame.commons.exceptions.BaseException;
+import racinggame.commons.exceptions.InvalidNumberOfRacers;
 import racinggame.commons.response.Message;
 import racinggame.commons.validations.Validator;
 import racinggame.model.Name;
@@ -20,70 +21,49 @@ public class CarsInfo {
 		this.validator = validator;
 	}
 
-	public String isValidNames() {
-		String names = "";
-		boolean isValid = false;
-		while (!isValid) {
-			names = countOfInputNamesAndIsDuplicated();
-			isValid = isValidCarName(names, isValid);
+	public String listOfCarNames() {
+		try {
+			String carNames = requestCarNames();
+			isValid(carNames);
+			return carNames;
+		} catch (BaseException exception) {
+			Message.send(exception.getMessage());
+			return listOfCarNames();
 		}
-		return names;
+	}
+
+	private String requestCarNames() {
+		Message.requestCarNames();
+		return Console.readLine();
+	}
+
+	private void isValid(String carNames) {
+		String[] names = splitNames(carNames);
+		isCountOfCar(names);
+		isDuplicated(names);
+		isValidCarNames(names);
 	}
 
 	private String[] splitNames(String text) {
 		return text.split(NAME_DISTINGUISHER);
 	}
 
-	private String countOfInputNamesAndIsDuplicated() {
-		boolean isValid = false;
-		String inputNames = "";
-		while (!isValid) {
-			inputNames = requestInputCarNames();
-			String[] splitNames = splitNames(inputNames);
-			boolean isValidCount = isCountOfCar(splitNames);
-			boolean isDuplicated = isDuplicated(splitNames);
-			isValid = (isValidCount && isDuplicated);
-		}
-		return inputNames;
-	}
-
-	private boolean isCountOfCar(String[] splitNames) {
+	private void isCountOfCar(String[] splitNames) {
 		if (splitNames.length < 2) {
-			Message.send(NOT_INPUT_CAR_NAMES_TWO_OR_MORE);
-			return false;
+			throw new InvalidNumberOfRacers();
 		}
-		return true;
 	}
 
-	private boolean isDuplicated(String[] splitNames) {
+	private void isDuplicated(String[] splitNames) {
 		Set<String> uniqueNamed = new HashSet<>(Arrays.asList(splitNames));
-		boolean result = uniqueNamed.size() == splitNames.length;
-		if (!result) {
-			Message.send(NOT_INPUT_DUPLICATED_CAR_NAMES);
+		if (uniqueNamed.size() != splitNames.length) {
+			throw new InvalidNumberOfRacers(NOT_INPUT_DUPLICATED_CAR_NAMES);
 		}
-		return result;
 	}
 
-	private boolean isValidCarName(String names, boolean isValid) {
-		try {
-			isValid = isCarNames(names);
-		} catch (BaseException exception) {
-			Message.send(exception.getMessage());
-		}
-		return isValid;
-	}
-
-	private boolean isCarNames(String names) {
-		String[] arr = splitNames(names);
-		for (String name : arr) {
+	private void isValidCarNames(String[] names) {
+		for (String name : names) {
 			validator.of(new Name(name));
 		}
-		return true;
 	}
-
-	private String requestInputCarNames() {
-		Message.requestCarNames();
-		return Console.readLine();
-	}
-
 }

@@ -19,7 +19,7 @@ public class Application {
 		CarsInfo carsInfo = new CarsInfo(validator);
 		RacingInfo racingInfo = new RacingInfo(validator);
 
-		String inputCarNames = carsInfo.isValidNames();
+		String inputCarNames = carsInfo.listOfCarNames();
 		Cycle cycle = racingInfo.ready();
 		// 게임 시작/진행 - 출력
 		Cars cars = CarsFactory.from(inputCarNames);
